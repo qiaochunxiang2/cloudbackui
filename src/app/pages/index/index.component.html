@@ -1,0 +1,44 @@
+<nz-layout>
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="240px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <span>
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>云服务后台管理系统</h1>
+      </span>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed" style="background-color: #07141e">
+      <li nz-menu-item (click)="changeUrl('/index/welcome')">
+        <i nz-icon nzType="bank"></i>
+        <span>首页</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
+          (click)="changeUrl('/index/userlist')">
+        <i nz-icon nzType="form"></i>
+        <span>人员管理</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>Footer</nz-footer>
+  </nz-layout>
+</nz-layout>

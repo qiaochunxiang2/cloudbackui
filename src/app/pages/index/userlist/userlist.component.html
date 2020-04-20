@@ -1,0 +1,51 @@
+<div style="margin-bottom: 16px;">
+  <div nz-row [nzGutter]="20">
+    <div nz-col nzSpan="4">
+      <button nz-button nzType="primary" (click)="openEntryData()">新增</button>
+    </div>
+  </div>
+</div>
+<nz-table #basicTable [nzData]="listData" [nzLoading]="loading">
+  <thead>
+  <tr>
+    <th nzShowSort nzSortKey="id">序号</th>
+    <th [align]="'center'">用户id</th>
+    <th [align]="'center'">账号</th>
+    <th [align]="'center'">用户名</th>
+    <th [align]="'center'">年龄</th>
+    <th [align]="'center'">性别</th>
+    <th [align]="'center'">手机号</th>
+    <th [align]="'center'">qq</th>
+    <th [align]="'center'">生日</th>
+    <th [align]="'center'">邮箱</th>
+    <th [align]="'center'">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectData}" (click)="selectChange(data)">
+      <td>{{i+1}}</td>
+      <td>{{data['id']}}</td>
+      <td>{{data['username']}}</td>
+      <td>{{data['information']['name']}}</td>
+      <td>{{data['information']['age']}}</td>
+      <td>
+        <ng-container *ngIf="data['information']['sex'] ==1">
+          男
+        </ng-container>
+        <ng-container *ngIf="data['information']['sex'] ==2">
+          女
+        </ng-container>
+        <ng-container *ngIf="data['information']['sex'] ==0">
+          未知
+        </ng-container>
+        </td>
+      <td>{{data['information']['phone']}}</td>
+      <td>{{data['information']['qq']}}</td>
+      <td>{{data['information']['birthday'] | date: 'yyyy-MM-dd'}}</td>
+      <td>{{data['information']['email']}}</td>
+      <td><a (click)="delete(data)"><i nz-icon nzType="delete"></i></a> </td>
+    </tr>
+  </tbody>
+</nz-table>
+<app-entry-data [visible]="entryDataVisible" (result)="closeEntry()"></app-entry-data>
+

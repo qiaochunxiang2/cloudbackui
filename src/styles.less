@@ -1,0 +1,1077 @@
+@import "../node_modules/ng-zorro-antd/resizable/style/entry.less";
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@html-selector: html;
+@ant-prefix: ant;
+
+
+@inspur-dark: #20262a; //菜单，顶部导航颜色
+@inspur-dark-second: #171a1e; //子菜单颜色
+@blue-6: #1964d9; //主题色
+
+@green-6: #52c41a;
+@red-6: #f5222d;
+@gold-6: #faad14;
+@normal-color: #d9d9d9;
+@white: #fff;
+@black: #000;
+
+@text-color: fade(@black, 85%);
+@text-color-secondary: fade(@black, 65%);
+@icon-color-hover: fade(@black, 85%);
+@heading-color: fade(@black, 95%);
+@heading-color-dark: fade(@white, 100%);
+@text-color-dark: fade(@white, 95%);
+@text-color-secondary-dark: fade(@white, 85%);
+@font-size-base: 12px;
+@line-height-base: 1.2;
+@border-radius-base: 0;
+
+@padding-xs: 8px; // small items
+
+@btn-border-radius-base: @border-radius-base;
+@btn-border-radius-sm: @border-radius-base;
+@btn-font-size-sm: @font-size-base;
+
+@form-item-margin-bottom: 0px; //@form-item-margin-bottom: 24px;
+
+@menu-inline-toplevel-item-height: 32px; //@menu-inline-toplevel-item-height: 40px;
+@menu-item-height: 32px; //@menu-item-height: 40px;
+@menu-item-vertical-margin: 4px; //@menu-item-vertical-margin: 4px;
+@dark-menu-item-hover-bg: transparent; // dark theme
+@menu-dark-color: @text-color-secondary-dark; //@menu-dark-bg: @layout-header-background;
+@menu-dark-bg: @inspur-dark;
+@menu-dark-submenu-bg: @inspur-dark-second;
+
+//自定义的颜色变量
+@content-bg: #ebecef;
+@header-bg: #f9f9fA;
+@th-bg: #f0f1f1;
+@table-bg: #fefefe;
+@border-color: #e3e3e5;
+@font-color: rgba(0, 0, 0, .9);
+@font-disabled-color: rgba(0, 0, 0, .25);
+@topBarHeight: 48px;
+@sideWidth: 200px;
+@bg-color: @inspur-dark;
+@shadow: 0 0 8px rgba(0, 0, 0, .35);
+@default-radius: @border-radius-base;
+@menu-bg: @table-bg;
+
+@table-header-color: @th-bg; //@table-header-color: @heading-color;
+@table-padding-vertical: 10px; //@table-padding-vertical: 16px;
+@table-padding-horizontal: 10px; //@table-padding-horizontal: 16px;
+@table-border-radius-base: 0; //@table-border-radius-base: @border-radius-base;
+@default-font: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+
+html, body, p, span, div, ul, li, input, label, form, list, table, thead, tbody, tr, td, th, a, button {
+  font-size: @font-size-base;
+  font-family: @default-font !important;;
+}
+
+i {
+  font-size: 16px
+}
+
+p {
+  //color: @font-color;
+}
+
+.ant-table-small > .ant-table-content > .ant-table-header > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-body > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-header > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-fixed-left > .ant-table-header > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-header > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-fixed-left > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-thead > tr > th, .ant-table-small > .ant-table-content > .ant-table-header > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-body > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-header > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-fixed-left > .ant-table-header > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-header > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-fixed-left > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-tbody > tr > td, .ant-table-small > .ant-table-content > .ant-table-fixed-right > .ant-table-body-outer > .ant-table-body-inner > table > .ant-table-tbody > tr > td {
+  //padding: 4px !important;
+}
+
+.ant-btn {
+  span {
+    vertical-align: text-top;
+  }
+}
+
+/*滚动条凹槽的颜色，还可以设置边框属性 */
+::-webkit-scrollbar-track-piece {
+
+  background-color: @table-bg;
+  //-webkit-border-radius: 2em;
+  //-moz-border-radius: 2em;
+  //border-radius: 2em;
+}
+
+/*滚动条的宽度*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/*滚动条的设置*/
+::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  background-clip: padding-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/*滚动条鼠标移上去*/
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ccc;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  word-break: break-all;
+  -ms-word-break: break-all;
+  color: @font-color !important;
+}
+
+.ant-table-thead > tr > th {
+  //background-color: @th-bg !important;
+}
+
+.ant-btn {
+  margin-right: @padding-xs;
+  padding: 0 25px !important;
+}
+
+.ant-form {
+  padding: @padding-xs !important;
+}
+
+.ant-input-search-button {
+  margin-right: 0;
+}
+
+.ant-table-pagination.ant-pagination {
+  margin: 4px 0 0 0 !important;
+}
+
+.selected-tr {
+  td {
+    background-color: @primary-1 !important;
+  }
+
+  background-color: @primary-1;
+}
+
+.ant-form-item {
+  margin-bottom: 2px !important;
+}
+
+.ant-form-item-label > label {
+  color: @font-color !important;
+}
+
+.ant-select, .ant-input {
+  color: @font-color !important;
+}
+
+.ant-select-disabled {
+  color: @font-disabled-color !important;
+}
+
+.ant-select-dropdown-menu-item-selected {
+  color: @font-color !important;
+}
+
+.ant-input-disabled {
+  color: @font-disabled-color !important;
+}
+
+.ant-calendar-picker {
+  width: 100% !important;
+}
+
+.ant-modal-header {
+  cursor: move;
+  padding: 8px 16px !important;
+}
+
+
+//对话框右上关闭按钮
+.ant-modal-close-x {
+  line-height: 39px !important;
+  width: 48px !important;
+  height: 39px !important;
+  border-radius: @border-radius-base;
+}
+
+//对话框右上关闭按钮
+.ant-modal-close-x:hover {
+  background-color: @red-6;
+  color: #ffffff;
+}
+
+.ant-modal-footer {
+  padding: @padding-xs 0 !important;
+  text-align: center !important;
+  cursor: move;
+
+  .ant-btn {
+    width: 120px;
+  }
+}
+
+//使元素内容呈现主题色
+.primary-color {
+  color: @blue-6 !important;
+  cursor: pointer;
+}
+
+.bomMaintain-modal {
+  .ant-modal {
+    width: 60% !important;
+  }
+}
+
+//开启边框的表格，加深边框
+.ant-table-bordered {
+  table {
+    border-color: @border-color !important;
+
+    th, td {
+      border-color: @border-color !important;
+    }
+  }
+}
+
+//列宽拖动控制柄
+.resize-trigger {
+  width: 1px;
+  height: 30px;
+  background: transparent;
+}
+
+//列宽拖动控制柄，预览边线
+.nz-resizable-preview {
+  border-width: 0;
+  border-right-width: 2px;
+  border-right-style: solid;
+}
+
+//表头拖拽切换顺序，控制柄，填满整个th，并不会影响列宽拖动柄，请放心使用
+.thDropHandle {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  cursor: move;
+  position: absolute
+}
+
+//右侧固定列覆盖列宽拖动柄
+.ant-table-th-right-sticky, .ant-table-td-right-sticky, .ant-table-th-left-sticky, .ant-table-td-left-sticky {
+  z-index: 9 !important;
+}
+
+//表格头悬挂变色
+.ant-table-thead > tr > th:hover {
+  background-color: @primary-1 !important;
+}
+
+//可点击文字上色，变手
+.clickable {
+  color: @blue-6;
+  cursor: pointer;
+}
+
+//控制自定义显示列按钮
+.table-header-config {
+  width: 30px;
+  height: 42px;
+  background-color: transparent;
+  /* float: right; */
+  margin-top: 8px;
+  right: 24px;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+
+  i {
+    line-height: 42px;
+  }
+}
+
+//功能总体背景容器
+.content-background {
+  background-color: @content-bg;
+  height: 100%;
+  overflow-y: auto;
+}
+
+//布局的头部的容器框
+.content-header {
+  padding: 0px;
+  padding-bottom: 1px;
+
+  .content-div {
+    background-color: @header-bg;
+    //border-radius: 4px 4px 0 0;
+  }
+}
+
+//布局中表格的容器框
+.content-table {
+  margin: 0 0px 0px 0px;
+  padding: 8px;
+  background-color: @table-bg;
+  //border-radius: 0 0 4px 4px;
+}
+
+tr:nth-child(2n) {
+  td {
+    background: @header-bg;
+
+  }
+}
+
+.ant-tabs-bar {
+  background-color: @table-bg !important;
+}
+
+.ant-tabs-nav .ant-tabs-tab {
+  margin: 0 !important;
+}
+
+//.ant-menu-submenu-popup,
+//.ant-menu-item-popup,
+.ant-menu-item-selected {
+  color: #fff !important;
+}
+
+table {
+  table-layout: fixed;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//登录页图片介绍
+.logcard {
+  .ant-card-body {
+    width: 86px;
+    text-align: center;
+    font-size: 20px;
+    color: rgba(225, 225, 225, 0.7);
+    padding: 12px 0 0 0 !important;
+  }
+}
+
+
+//查询组件///////////////////////////////////////////
+.querylist-modal {
+  .ant-modal {
+    width: max-content !important;
+    max-width: 80%;
+    max-height: 80%;
+    min-height: 240px;
+    top: 5%;
+  }
+
+  .ant-modal-body {
+    padding: 16px !important;
+  }
+
+  .ant-modal-footer {
+    padding: 8px;
+    text-align: center;
+
+    .ant-btn {
+      width: 120px;
+    }
+  }
+
+  .ant-modal-header {
+    padding: 16px;
+  }
+}
+
+.query-btns {
+  text-align: right;
+  width: 50%;
+  display: inline-block;
+
+  a {
+    margin-right: 8px;
+  }
+
+  a:hover {
+    color: @blue-6 !important;
+  }
+}
+
+.query-title:hover {
+  a {
+    color: @blue-6 !important;
+  }
+}
+
+.query-title {
+  width: max-content;
+}
+
+//查询组件///////////////////////////////////////////
+
+
+//帮助组件///////////////////////////////////////////
+.help-modal {
+  .ant-modal {
+    width: max-content !important;
+    max-width: 60%;
+    min-width: 300px;
+    min-height: 360px;
+    max-height: 70%;
+    top: 5%;
+  }
+
+  .ant-modal-body {
+    padding: 8px 16px 0 16px !important;
+  }
+
+  .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+    word-break: break-all;
+  }
+
+  .ant-modal-footer {
+    padding: 8px;
+    text-align: center;
+
+    .ant-btn {
+      width: 120px;
+    }
+  }
+
+  .ant-modal-header {
+    padding: 16px;
+  }
+}
+
+.selected-tr {
+  td {
+    background-color: @primary-1 !important;
+  }
+
+  background-color: @primary-1;
+}
+
+//物料帮助
+.m-help {
+  .ant-modal {
+    min-width: 900px;
+    max-width: 80%;
+    top: 2%;
+  }
+
+  .ant-modal-content {
+    min-width: 900px;
+    max-width: 80%;
+  }
+
+  .ant-modal-body {
+    padding: 0 16px 8px 16px !important;
+  }
+
+  .ant-modal-footer {
+    padding: 8px;
+    text-align: center;
+
+    .ant-btn {
+      width: 120px;
+    }
+  }
+}
+
+//帮助组件///////////////////////////////////////////
+
+app-login {
+
+  #logindiv {
+    margin-top: 97px;
+    vertical-align: top;
+    background: rgba(241, 241, 241, 0.84);
+    text-align: left;
+    /* top: 20%; */
+    /* left: 80%; */
+    //margin-right: 25%;
+    width: 352px;
+    margin-left: calc(50% - 660px);
+    height: 390px;
+    border-radius: @border-radius-base;
+    display: inline-block;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    form {
+      margin: 0 25px;
+      width: 100% !important;
+    }
+  }
+
+  .logtitle {
+    margin-top: 18px !important;
+    margin-bottom: 8px !important;
+    width: 282px !important;
+    font-size: 24px;
+    color: @blue-6;
+    text-align: center;
+  }
+
+  .loginput {
+    font-size: 16px !important;
+    width: 282px !important;
+    height: 40px !important;
+    border-radius: @border-radius-base;
+  }
+
+  .log-in {
+    font-size: 18px;
+  }
+
+  .login-form-button {
+    height: 44px !important;
+    margin-top: 10px;
+    width: 282px !important;
+    border-radius: @border-radius-base;
+    background-color: @blue-6;
+    border-color: @blue-6;
+  }
+}
+
+app-index {
+  .index-sider {
+    background-color: @inspur-dark;
+  }
+
+  .top-bar {
+    height: @topBarHeight;
+    width: 100%;
+    background-color: @bg-color;
+    font-size: 0;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: @shadow;
+
+    div {
+      display: inline-block;
+    }
+
+    #logo {
+      display: inline-block;
+
+      img {
+        height: @topBarHeight;
+      }
+    }
+
+    #search-div {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    #search {
+      height: 100%;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    #user {
+      margin: 10px;
+      height: 100%;
+      float: right;
+      display: inline-block;
+    }
+  }
+
+  .index-container {
+    font-size: 0;
+    position: absolute;
+    top: @topBarHeight;
+    width: 100%;
+    height: calc(100% - @topBarHeight);
+
+    .content {
+      height: 100%;
+    }
+  }
+
+  .user-in-menu {
+    width: 100%;
+    height: 40px;
+  }
+
+  .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon {
+    font-size: 24px !important;
+    line-height: 32px !important;
+  }
+
+  .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0 28px !important;
+    margin-bottom: 24px;
+  }
+
+  .ant-menu-submenu-title .anticon {
+    font-size: 14px !important;
+  }
+
+  .menu {
+    height: calc(100% - 50px);
+    overflow-y: auto;
+    user-select: none;
+    overflow-x: hidden;
+    padding-top: 16px;
+
+
+  }
+
+  //隐藏滚动条,chrome,safari
+  .menu::-webkit-scrollbar {
+    width: 0 !important
+  }
+
+  //隐藏滚动条 IE10+,firefox
+  .menu {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+  }
+
+  .button {
+    width: 50px;
+    padding: 4px 17px;
+    cursor: pointer;
+
+    i {
+      font-size: 16px;
+      color: #ffffff;
+    }
+  }
+
+  .button:hover {
+    background-color: rgba(255, 255, 255, .2);
+  }
+
+  .ant-popover-inner-content {
+    padding: 0 !important;
+  }
+
+
+
+  #search-input {
+    color: #ffffff !important;
+    border: none;
+    background-color: transparent;
+  }
+
+  #search-input:focus {
+    color: rgba(0, 0, 0, .85) !important;
+    background-color: #ffffff;
+  }
+
+  .searchList {
+    position: absolute;
+    top: 40px;
+    width: 200px;
+    left: 289px;
+    box-shadow: @shadow;
+    border-radius: @default-radius;
+    background-color: @table-bg;
+    list-style: none;
+    padding: 4px 0;
+
+    li {
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: @primary-1;
+      }
+
+      div {
+        width: 100%;
+        height: 100%;
+        padding-left: 24px;
+      }
+    }
+  }
+
+  .menu-footer {
+    height: 50px;
+    font-size: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: @bg-color;
+
+    li {
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      width: 60px;
+      list-style: none;
+      float: left;
+      cursor: pointer;
+      color: #fff !important;
+    }
+  ;
+
+    li:hover {
+      background-color: fade(@blue-6, 40%);
+      box-shadow: 0 0 4px rgba(0, 0, 0, .15);
+    }
+
+    .footer-li-active {
+      background-color: @blue-6 !important;
+      box-shadow: 0 0 4px rgba(0, 0, 0, .15);
+      color: #fff !important;
+    }
+  }
+
+  .top-border {
+    border-top: solid 1px #e3e3e3;
+  }
+
+  .index-tabset {
+    z-index: 1;
+
+    .ant-tabs-nav-container {
+      background-color: fade(@bg-color, 95%);
+    }
+
+    .ant-tabs-nav .ant-tabs-tab {
+      padding: 9px 16px !important;
+    }
+
+    .ant-tabs-ink-bar {
+      display: none !important;
+    }
+
+    .ant-tabs-tab {
+      //box-shadow: inset -1px 0 0 0 #000 !important;
+      color: #fff;
+    }
+
+    .ant-tabs-tab-active {
+      background-color: @content-bg !important;
+      color: @blue-6 !important;
+    }
+
+    .ant-tabs-nav .ant-tabs-tab {
+      margin: 0 !important;
+    }
+
+    .ant-tabs-tab-prev {
+      color: #fff !important;
+      //box-shadow: 1px 0 0 0 #113c65 !important;
+
+      &:hover {
+        color: #fff !important;
+      }
+    }
+
+    .ant-tabs-tab-next {
+      color: #fff !important;
+
+      &:hover {
+        color: #fff !important;
+      }
+    }
+  }
+
+}
+.ant-list-item {
+  padding-left: 16px;
+  width: 120px;
+  transition-duration: .3s;
+  cursor: pointer;
+}
+.ant-list-item:hover {
+  background-color: @primary-1;
+}
+.header-dropdown-menu {
+  background-color: @table-bg;
+  padding: 4px 0;
+  box-shadow: @shadow;
+  border-radius: @default-radius;
+}
+.header-dropdown-menu-padding {
+  background-color: @table-bg;
+  padding: 8px;
+  box-shadow: @shadow;
+  border-radius: @default-radius;
+}
+
+
+app-welcome {
+  .span-bold {
+    font-size: 14px;
+  }
+
+  .ant-card-grid {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 25%;
+    text-align: center;
+    padding: 24px 0;
+    background-color: #eceef3;
+
+    &:hover {
+      color: #fff;
+      background-color: @blue-6;
+      text-shadow: 0 0 2px rgba(0, 0, 0, .3);
+    }
+
+    color: rgba(0, 0, 0, .85);
+  }
+
+}
+
+app-usercenter {
+  button {
+    margin-left: 8px;
+  }
+
+  .ant-avatar-string {
+    font-size: 40px !important;
+  }
+
+  #info {
+    padding: 0 20%;
+    margin-top: 50px;
+
+    div {
+    }
+
+    ul {
+      padding-left: 50px;
+      font-size: 0;
+      list-style: none;
+
+      li {
+        color: #000;
+      }
+    }
+
+    .ant-avatar {
+      span {
+        font-size: 50px;
+      }
+    }
+  }
+
+  #ul {
+    width: 100%;
+    line-height: 50px;
+    display: grid;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      padding: 0 20%;
+
+      span {
+        font-weight: bold;
+      }
+
+      div {
+        height: 100%;
+        float: right;
+      }
+    }
+  }
+
+  .setted {
+    color: #52c41a;
+
+    i {
+      color: #52c41a;
+    }
+  }
+
+  .unset {
+    color: gold;
+
+    i {
+      color: gold;
+    }
+  }
+
+  .edit {
+    color: @blue-6;
+    cursor: pointer;
+
+    i {
+      color: @blue-6;
+    }
+  }
+
+  ::ng-deep .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ::ng-deep .vertical-center-modal .ant-modal {
+    top: 0;
+  }
+
+  .green {
+    //color:#52c41a;
+  }
+
+}
+
+app-setting {
+  button {
+    margin-left: 8px;
+  }
+
+  .ant-avatar-string {
+    font-size: 40px !important;
+  }
+
+  #info {
+    padding: 0 20%;
+    margin-top: 50px;
+
+    div {
+    }
+
+    ul {
+      padding-left: 50px;
+      font-size: 0;
+      list-style: none;
+
+      li {
+        color: #000;
+      }
+    }
+
+    .ant-avatar {
+      span {
+        font-size: 50px;
+      }
+    }
+  }
+
+  #ul {
+    width: 100%;
+    line-height: 50px;
+    display: grid;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      padding: 0 20%;
+
+      span {
+        font-weight: bold;
+      }
+
+      div {
+        height: 100%;
+        float: right;
+      }
+    }
+  }
+
+  .setted {
+    color: #52c41a;
+
+    i {
+      color: #52c41a;
+    }
+  }
+
+  .unset {
+    color: gold;
+
+    i {
+      color: gold;
+    }
+  }
+
+  .edit {
+    color: @blue-6;
+    cursor: pointer;
+
+    i {
+      color: @blue-6;
+    }
+  }
+
+  theme
+  ::ng-deep .vertical-center-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ::ng-deep .vertical-center-modal .ant-modal {
+    top: 0;
+  }
+
+  .green {
+    //color:#52c41a;
+  }
+
+}
+
+//文档管理
+app-manage {
+  .active-node {
+    background: @primary-2;
+
+  }
+}
+
+
+
+.node-content-wrapper-active, .node-content-wrapper-focused, .node-content-wrapper:hover{
+  border-radius: @border-radius-base;
+  box-shadow: none;
+}
+.node-content-wrapper-active{
+  background-color: @blue-6 !important;
+  color: #fff;
+}
+
+.node-content-wrapper-focused,.node-content-wrapper:hover{
+  background-color: @primary-1 ;
+}
+
+
+.node-drop-slot.is-dragging-over { background: @primary-1 !important;}
+.node-content-wrapper.is-dragging-over { background: @primary-1 !important; }
+
+
+.node-wrapper {
+  line-height: 2 !important;
+  span{
+    font-size: 14px;
+  }
+}
+
+.menu-tree-div {
+  border: solid 1px @border-color;
+  padding-left: 8px;
+  margin-top: 8px;
+  height: 100%;
+  overflow: auto;
+}
+
+.menu-avator,.model-avator{
+  .ant-avatar-string{
+    font-size: 22px !important;
+  }
+}
+
+.new-notify-item{
+  box-shadow: inset 4px 0 0 0 @blue-6;
+}
