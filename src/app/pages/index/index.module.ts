@@ -8,6 +8,9 @@ import {EntryDataComponent} from './entry-data/entry-data.component';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {WelcomeComponent} from './welcome/welcome.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { CompanyComponent } from '../company/company.component';
+import { AddCompanyComponent } from '../company/add-company/add-company.component';
+import { UpdateCompanyComponent } from '../company/update-company/update-company.component';
 
 
 const routes: Routes = [
@@ -15,6 +18,7 @@ const routes: Routes = [
     path: '', component: IndexComponent, children: [
       {path: 'welcome', component: WelcomeComponent},
       {path: 'userlist', component: UserlistComponent},
+      {path: 'company', component: CompanyComponent},
     ]
   }
 ];
@@ -25,6 +29,9 @@ const routes: Routes = [
     EntryDataComponent,
     WelcomeComponent,
     UserlistComponent,
+    CompanyComponent,
+    AddCompanyComponent,
+    UpdateCompanyComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

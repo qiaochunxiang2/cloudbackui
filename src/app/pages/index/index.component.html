@@ -21,6 +21,11 @@
         <i nz-icon nzType="form"></i>
         <span>人员管理</span>
       </li>
+      <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
+          (click)="changeUrl('/index/company')">
+        <i nz-icon nzType="form"></i>
+        <span>公司管理</span>
+      </li>
     </ul>
   </nz-sider>
   <nz-layout>

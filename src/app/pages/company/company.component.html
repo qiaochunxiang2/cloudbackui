@@ -1,0 +1,41 @@
+<div *ngIf="!updateCompanyVisiable">
+  <div style="margin-bottom: 16px;">
+    <div nz-row [nzGutter]="20">
+      <div nz-col nzSpan="4">
+        <button nz-button nzType="primary" (click)="openAdd()">新增</button>
+      </div>
+    </div>
+  </div>
+  <nz-table #basicTable [nzData]="listData" [nzLoading]="loading">
+    <thead>
+    <tr>
+      <th nzShowSort nzSortKey="id">序号</th>
+      <th [align]="'center'">公司名称</th>
+      <th [align]="'center'">公司电话</th>
+      <th [align]="'center'">公司地址</th>
+      <th [align]="'center'">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectedCompany}"
+        (click)="selectChange(data)">
+      <td>{{i + 1}}</td>
+      <td>{{data['name']}}</td>
+      <td>{{data['phone']}}</td>
+      <td>{{data['address']}}</td>
+      <td>
+        <a (click)="update(data)" nzTooltipTitle="修改" nzTooltipPlacement="topLeft" nz-tooltip><i nz-icon
+                                                                                                 nzType="edit"></i></a>
+        <a (click)="delete(data)" nzTooltipTitle="删除" nzTooltipPlacement="topLeft" nz-tooltip
+           style="padding-left: 10px"><i nz-icon nzType="delete"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<app-add-company [isVisible]="addCompanyViable" (result)="addBack()"></app-add-company>
+<div *ngIf="updateCompanyVisiable">
+  <app-update-company (result)="updateBack(1)" [companyData]="selectedCompany"
+                      (saveResult)="updateBack(2)"></app-update-company>
+</div>
