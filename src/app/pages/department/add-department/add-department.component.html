@@ -7,39 +7,32 @@
 >
 </nz-modal>
 <ng-template #modalTitle>
-  添加公司
+  添加部门
 </ng-template>
 
 <ng-template #modalContent>
   <nz-form-item style="padding-top: 10px">
     <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
-                   nzRequired>公司名称
+                   nzRequired>部门名称
     </nz-form-label>
     <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
                      [nzXs]="6" [nzValidateStatus]="!nameRequired?'success':'error'"
                      [nzHasFeedback]="nameRequired">
-      <input nz-input name="name" [(ngModel)]="companyData.name" (ngModelChange)="nameChange()">
-      <nz-form-explain *ngIf="nameRequired">{{'请输入公司名称'}}</nz-form-explain>
+      <input nz-input name="name" [(ngModel)]="departmentData.name" (ngModelChange)="nameChange()">
+      <nz-form-explain *ngIf="nameRequired">{{'请输入部门名称'}}</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item style="padding-top: 10px">
+  <nz-form-item style="padding-top: 20px">
     <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
-                   nzRequired>公司电话
+                   nzRequired>所属公司
     </nz-form-label>
     <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
-                     [nzXs]="6" [nzValidateStatus]="!phoneRequired?'success':'error'"
-                     [nzHasFeedback]="phoneRequired">
-      <input nz-input name="phone" [(ngModel)]="companyData.phone" (ngModelChange)="phoneChange()">
-      <nz-form-explain *ngIf="phoneRequired">{{'请输入公司电话'}}</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item style="padding-top: 10px">
-    <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18" nzRequired>
-      公司地址
-    </nz-form-label>
-    <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
-                     [nzXs]="6">
-      <input nz-input name="address" [(ngModel)]="companyData.address">
+                     [nzXs]="6" [nzValidateStatus]="!companyRequired?'success':'error'"
+                     [nzHasFeedback]="companyRequired">
+      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="departmentData.cId" (ngModelChange)="cIdChange()">
+        <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+      </nz-select>
+      <nz-form-explain *ngIf="companyRequired">{{'请选择公司'}}</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
 </ng-template>

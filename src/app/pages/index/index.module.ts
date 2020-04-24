@@ -7,10 +7,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EntryDataComponent} from './entry-data/entry-data.component';
 import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
 import {WelcomeComponent} from './welcome/welcome.component';
-import { UserlistComponent } from './userlist/userlist.component';
-import { CompanyComponent } from '../company/company.component';
-import { AddCompanyComponent } from '../company/add-company/add-company.component';
-import { UpdateCompanyComponent } from '../company/update-company/update-company.component';
+import {UserlistComponent} from './userlist/userlist.component';
+import {CompanyComponent} from '../company/company.component';
+import {AddCompanyComponent} from '../company/add-company/add-company.component';
+import {UpdateCompanyComponent} from '../company/update-company/update-company.component';
+import {DepartmentComponent} from '../department/department.component';
+import { AddDepartmentComponent } from '../department/add-department/add-department.component';
+import { UpdateDepartmentComponent } from '../department/update-department/update-department.component';
 
 
 const routes: Routes = [
@@ -19,6 +22,7 @@ const routes: Routes = [
       {path: 'welcome', component: WelcomeComponent},
       {path: 'userlist', component: UserlistComponent},
       {path: 'company', component: CompanyComponent},
+      {path: 'department', component: DepartmentComponent}
     ]
   }
 ];
@@ -32,6 +36,9 @@ const routes: Routes = [
     CompanyComponent,
     AddCompanyComponent,
     UpdateCompanyComponent,
+    DepartmentComponent,
+    AddDepartmentComponent,
+    UpdateDepartmentComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -23,6 +23,7 @@ export class UpdateCompanyComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.companyData['id']);
   }
 
   updateCompany() {
@@ -58,24 +59,20 @@ export class UpdateCompanyComponent implements OnInit {
   }
 
   confrim() {
-    if (this.companyData.name == null || this.companyData.name.trim() == '') {
+    if (this.companyData.name == null || this.companyData.name == '') {
       this.nameRequired = true;
     }
-    if (this.companyData.phone == null || this.companyData.phone.trim() == '') {
+    if (this.companyData.phone == null || this.companyData.phone == '') {
       this.phoneRequired = true;
     }
   }
 
   nameChange() {
-    this.nameRequired = this.companyData.name == null || this.companyData.name.trim() == '';
+    this.nameRequired = this.companyData.name == null || this.companyData.name == '';
   }
 
   phoneChange() {
-    this.phoneRequired = this.companyData.phone == null || this.companyData.phone.trim() == '';
-  }
-
-  saveConfirm() {
-
+    this.phoneRequired = this.companyData.phone == null || this.companyData.phone == '';
   }
 
   update() {

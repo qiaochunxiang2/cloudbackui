@@ -1,9 +1,9 @@
 <div class="content-background" #background>
   <div class="content-header" #header>
     <div class="content-div" style="height: 40px">
-      <a (click)="back()" [title]="'返回公司列表'"
+      <a (click)="back()" [title]="'返回部门列表'"
          style="font-weight: bold;line-height: 40px;margin-left: 8px;color: black">
-        <i nz-icon nzTheme="outline" nzType="left"></i>返回公司列表
+        <i nz-icon nzTheme="outline" nzType="left"></i>返回部门列表
       </a>
       <div style="float: right;padding-top: 4px;">
         <button (click)="cancel()" nz-button>取消</button>
@@ -14,60 +14,52 @@
   </div>
   <div class="content-header" style="padding-top: 0; background: #ffffff">
     <div class="content-div" style="border-radius: 0;">
-      <nz-content style="background: #ffffff">
+      <nz-content style=" background: #ffffff">
         <form nz-form>
-          <div nz-row>
-            <div nz-col [nzSpan]="14" [nzOffset]="3">
-              <nz-form-item>
-                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
-                               nzRequired>公司id</nz-form-label>
-                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
-                                 [nzXs]="6">
-                  <input nz-input [(ngModel)]="companyData['id']" [disabled]="true" name="id">
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row style="padding-top: 30px">
-            <div nz-col [nzSpan]="14" [nzOffset]="3">
-              <nz-form-item>
-                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
-                               nzRequired>公司名称
-                </nz-form-label>
-                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
-                                 [nzXs]="6" [nzValidateStatus]="!nameRequired?'success':'error'"
-                                 [nzHasFeedback]="nameRequired">
-                  <input nz-input name="name" [(ngModel)]="companyData['name']" (ngModelChange)="nameChange()">
-                  <nz-form-explain *ngIf="nameRequired">{{'请输入公司名称'}}</nz-form-explain>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
-          <div nz-row style="padding-top: 30px">
-            <div nz-col [nzSpan]="14" [nzOffset]="3">
-              <nz-form-item>
-                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
-                               nzRequired>公司电话
-                </nz-form-label>
-                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
-                                 [nzXs]="6" [nzValidateStatus]="!phoneRequired?'success':'error'"
-                                 [nzHasFeedback]="phoneRequired">
-                  <input nz-input name="phone" [(ngModel)]="companyData['phone']" (ngModelChange)="phoneChange()">
-                  <nz-form-explain *ngIf="phoneRequired">{{'请输入公司电话'}}</nz-form-explain>
-                </nz-form-control>
-              </nz-form-item>
-            </div>
-          </div>
           <div nz-row style="padding-top: 30px">
             <div nz-col [nzSpan]="14" [nzOffset]="3">
               <nz-form-item>
                 <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
-                  公司地址
+                  部门id
                 </nz-form-label>
                 <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
                                  [nzXs]="6">
-                  <input nz-input placeholder="公司地址"
-                         name="address" [(ngModel)]="companyData['address']">
+                  <input nz-input placeholder="部门id" [disabled]="true" [(ngModel)]="updateDepartmentData['id']"
+                         name="id">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
+                               nzRequired>部门名称
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6" [nzValidateStatus]="!nameRequired?'success':'error'"
+                                 [nzHasFeedback]="nameRequired">
+                  <input nz-input name="name" [(ngModel)]="updateDepartmentData['name']" (ngModelChange)="nameChange()">
+                  <nz-form-explain *ngIf="nameRequired">{{'请输入部门名称'}}</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18"
+                               nzRequired>所属公司
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6" [nzValidateStatus]="!companyRequired?'success':'error'"
+                                 [nzHasFeedback]="companyRequired">
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="updateDepartmentData['cId']"
+                             (ngModelChange)="companyChange()" name="company">
+                    <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name"
+                               [nzValue]="company.id"></nz-option>
+                  </nz-select>
+                  <nz-form-explain *ngIf="companyRequired">{{'请选择公司'}}</nz-form-explain>
                 </nz-form-control>
               </nz-form-item>
             </div>

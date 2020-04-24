@@ -29,7 +29,10 @@ export class CompanyComponent implements OnInit {
     this.addCompanyViable = true;
   }
 
-  addBack() {
+  addBack(data) {
+    if (data == 2){
+      this.findAllCompany();
+    }
     this.addCompanyViable = false;
   }
 
@@ -38,6 +41,7 @@ export class CompanyComponent implements OnInit {
     this.companyService.findAllCompany().then(res => {
       if (res['data']) {
         this.listData = res['data'];
+        console.log(this.listData);
       } else {
         this.message.error('服务器错误');
       }
@@ -63,7 +67,7 @@ export class CompanyComponent implements OnInit {
         this.message.success('删除成功');
         this.findAllCompany();
       } else {
-        this.message.error('服务器错误');
+        this.message.error('有关联的部门，无法删除');
       }
     });
   }

@@ -1,0 +1,47 @@
+<div *ngIf="!updateDepartmentVisiable">
+  <div style="margin-bottom: 16px;">
+    <div nz-row [nzGutter]="20">
+      <div nz-col nzSpan="4">
+        <button nz-button nzType="primary" (click)="openAdd()">新增</button>
+      </div>
+      <div nz-col [nzSpan]="5">
+        <nz-form-control>
+          公司：
+          <nz-select nzShowSearch nzAllowClear [(ngModel)]="cId">
+            <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </div>
+      <div nz-col [nzSpan]="1">
+        <button nz-button nzType="default" (click)="queryByCompany()">查询</button>
+      </div>
+    </div>
+  </div>
+  <nz-table #basicTable [nzData]="listData" [nzLoading]="loading">
+    <thead>
+    <tr>
+      <th nzShowSort nzSortKey="id">序号</th>
+      <th [align]="'center'">部门名称</th>
+      <th [align]="'center'">所属公司</th>
+      <th [align]="'center'">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectedDepartment}"
+        (click)="selectChange(data)">
+      <td>{{i + 1}}</td>
+      <td>{{data['name']}}</td>
+      <td>{{data['company']['name']}}</td>
+      <td>
+        <a (click)="update(data)" nzTooltipTitle="修改" nzTooltipPlacement="topLeft" nz-tooltip><i nz-icon nzType="edit"></i></a>
+        <a (click)="delete(data)" nzTooltipTitle="删除" nzTooltipPlacement="topLeft" nz-tooltip
+           style="padding-left: 10px"><i nz-icon nzType="delete"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+<app-add-department [isVisible]="addDepartmentVisiable" (result)="addBack()"></app-add-department>
+<div *ngIf="updateDepartmentVisiable">
+  <app-update-department [departmentData]="selectedDepartment" (result)="updateBack(1)" (saveResult)="updateBack(2)"></app-update-department>
+</div>

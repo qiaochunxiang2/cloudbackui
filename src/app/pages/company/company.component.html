@@ -34,7 +34,7 @@
   </nz-table>
 </div>
 
-<app-add-company [isVisible]="addCompanyViable" (result)="addBack()"></app-add-company>
+<app-add-company [isVisible]="addCompanyViable" (result)="addBack(1)" (saveResult)="addBack(2)"></app-add-company>
 <div *ngIf="updateCompanyVisiable">
   <app-update-company (result)="updateBack(1)" [companyData]="selectedCompany"
                       (saveResult)="updateBack(2)"></app-update-company>

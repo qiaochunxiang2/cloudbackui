@@ -10,6 +10,8 @@ import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 export class AddCompanyComponent implements OnInit {
   @Input() isVisible = false;
   @Output() result = new EventEmitter();
+  @Output() saveResult = new EventEmitter();
+
   isConfirmLoading = false;
   nameRequired = false;
   phoneRequired = false;
@@ -36,6 +38,10 @@ export class AddCompanyComponent implements OnInit {
       phone: null
     };
     this.result.emit(false);
+  }
+
+  saveBack() {
+    this.saveResult.emit(false);
   }
 
   confrim() {

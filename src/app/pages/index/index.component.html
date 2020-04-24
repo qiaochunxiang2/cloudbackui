@@ -7,7 +7,7 @@
             [nzTrigger]="null">
     <div class="sidebar-logo">
       <span>
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <img src="../../../assets/images/logo.svg" alt="logo">
         <h1>云服务后台管理系统</h1>
       </span>
     </div>
@@ -25,6 +25,11 @@
           (click)="changeUrl('/index/company')">
         <i nz-icon nzType="form"></i>
         <span>公司管理</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
+          (click)="changeUrl('/index/department')">
+        <i nz-icon nzType="form"></i>
+        <span>部门管理</span>
       </li>
     </ul>
   </nz-sider>
