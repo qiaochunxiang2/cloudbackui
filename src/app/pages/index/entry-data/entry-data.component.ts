@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {EntryDataService} from './service/entry-data.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
+import {CompanyService} from '../../company/service/company.service';
+import {DepartmentService} from '../../department/service/department.service';
 
 @Component({
   selector: 'app-entry-data',
@@ -10,10 +12,12 @@ import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 export class EntryDataComponent implements OnInit {
   @Input() visible = false;
   @Output() result = new EventEmitter();
-  editDisable = true;
   emailTrue = true;
   phoneTrue = true;
   qqTrue = true;
+  cId;
+  listDepartment;
+  listCompany;
   userData = {
     username: null,
     password: null,
@@ -25,20 +29,26 @@ export class EntryDataComponent implements OnInit {
       email: null,
       qq: null,
       phone: null,
-      address: null
+      address: null,
+      department: {
+        id: null,
+      }
     }
   };
-
+  companyRequired = false;
+  departmentRequired = false;
   constructor(
     private entryDataService: EntryDataService,
     private message: NzMessageService,
     private modalService: NzModalService,
+    private companyService: CompanyService,
+    private departmentService: DepartmentService
   ) {
   }
 
 
   ngOnInit() {
-
+    this.findAllCompany();
   }
 
   close() {
@@ -54,9 +64,13 @@ export class EntryDataComponent implements OnInit {
         email: null,
         qq: null,
         phone: null,
-        address: null
+        address: null,
+        department: {
+          id: null,
+        }
       }
     };
+    this.cId = null;
   }
 
   save() {
@@ -72,6 +86,7 @@ export class EntryDataComponent implements OnInit {
   }
 
   saveConfirm(){
+    this.confirm();
     if (this.userData.username != null && this.userData.password != null) {
       this.entryDataService.register(this.userData).then(res => {
         if (res['state'] == 200) {
@@ -87,6 +102,12 @@ export class EntryDataComponent implements OnInit {
       this.message.error('请填写账号和密码');
     }
   }
+
+  confirm(){
+    this.departmentRequired = this.userData.information.department.id == null || this.userData.information.department.id == '';
+    this.companyRequired = this.cId == null || this.cId == '';
+  }
+
   emailChecking() {
     if (this.userData.information.email == null || this.userData.information.email == '') {
       this.emailTrue = true;
@@ -112,5 +133,36 @@ export class EntryDataComponent implements OnInit {
     }
     let qqCheck = /[1-9][0-9]{4,14}$/;
     this.qqTrue = qqCheck.test(this.userData.information.qq);
+  }
+
+  findAllCompany(){
+    this.companyService.findAllCompany().then(res=>{
+      if (res['data']){
+        this.listCompany = res['data'];
+      } else{
+        this.message.error('服务器错误');
+      }
+    })
+  }
+
+  companyChange(){
+    this.companyRequired = this.cId == null || this.cId == '';
+    this.userData.information.department.id = null;
+    if (this.cId != null){
+      this.queryByCompany();
+    }
+  }
+
+  departmentChange(){
+    this.departmentRequired = this.userData.information.department.id == null || this.userData.information.department.id == '';
+  }
+  queryByCompany() {
+    this.departmentService.findAllDepartment(this.cId).then(res => {
+      if (res['data']) {
+        this.listDepartment = res['data'];
+      } else {
+        this.message.error('服务器错误');
+      }
+    });
   }
 }

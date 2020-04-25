@@ -109,6 +109,32 @@
         </nz-form-item>
       </div>
     </div>
+    <div nz-row nzGutter="8">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>公司</nz-form-label>
+          <nz-form-control  [nzValidateStatus]="!companyRequired?'success':'error'"
+                            [nzHasFeedback]="companyRequired">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="cId" (ngModelChange)="companyChange()" name="company">
+              <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="companyRequired">{{'请选择公司'}}</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label>部门</nz-form-label>
+          <nz-form-control [nzValidateStatus]="!departmentRequired?'success':'error'"
+                           [nzHasFeedback]="departmentRequired">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门" [(ngModel)]="userData.information.department.id" (ngModelChange)="departmentChange()" name="department">
+              <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name" [nzValue]="department.id"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="departmentRequired">{{'请选择部门'}}</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
   </form>
   <div class="footer">
     <button type="button" (click)="save()" class="ant-btn ant-btn-primary"><span>保存</span></button>

@@ -113,6 +113,5 @@ export class DepartmentComponent implements OnInit {
       }
       this.loading = false;
     });
-
   }
 }

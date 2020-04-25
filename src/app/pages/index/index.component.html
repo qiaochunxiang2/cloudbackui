@@ -17,11 +17,6 @@
         <span>首页</span>
       </li>
       <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
-          (click)="changeUrl('/index/userlist')">
-        <i nz-icon nzType="form"></i>
-        <span>人员管理</span>
-      </li>
-      <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
           (click)="changeUrl('/index/company')">
         <i nz-icon nzType="form"></i>
         <span>公司管理</span>
@@ -30,6 +25,11 @@
           (click)="changeUrl('/index/department')">
         <i nz-icon nzType="form"></i>
         <span>部门管理</span>
+      </li>
+      <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Navigation One' : ''"
+          (click)="changeUrl('/index/userlist')">
+        <i nz-icon nzType="form"></i>
+        <span>人员管理</span>
       </li>
     </ul>
   </nz-sider>
