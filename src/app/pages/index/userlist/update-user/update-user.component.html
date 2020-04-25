@@ -1,0 +1,151 @@
+<div class="content-background">
+  <div class="content-header">
+    <div class="content-div" style="height: 40px">
+      <a (click)="back()" [title]="'返回人员列表'"
+         style="font-weight: bold;line-height: 40px;margin-left: 8px;color: black">
+        <i nz-icon nzTheme="outline" nzType="left"></i>返回人员列表
+      </a>
+      <div style="float: right;padding-top: 4px;">
+        <button (click)="cancel()" nz-button>取消</button>
+        <button (click)="update()" *ngIf="true" nz-button nzType="primary" [nzLoading]="loading">保存
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content-header" style="padding-top: 0; background: #ffffff">
+    <div class="content-div" style="border-radius: 0;">
+      <nz-content style=" background: #ffffff">
+        <form nz-form>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  账号
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6">
+                  <input nz-input placeholder="账号" [disabled]="true" [(ngModel)]="userData['username']"
+                         name="username">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  用户名
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6">
+                  <input nz-input placeholder="用户名" [(ngModel)]="userData['information']['name']"
+                         name="name">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  性别
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6">
+                  <nz-radio-group [(ngModel)]="userData['information']['sex']" name="sex">
+                    <label nz-radio nzValue="1">男</label>
+                    <label nz-radio nzValue="2" style="padding-left: 30px">女</label>
+                  </nz-radio-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  年龄
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6">
+                  <nz-input-number [nzMin]="1" [nzMax]="120" [nzStep]="1"
+                                   [(ngModel)]="userData['information']['age']" name="age"></nz-input-number>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  手机号
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6" [nzValidateStatus]="phoneTrue?'success':'error'"
+                                 [nzHasFeedback]="!phoneTrue" >
+                  <input nz-input [(ngModel)]="userData['information']['phone']"
+                         (ngModelChange)="phoneChecking()" name="phone">
+                  <nz-form-explain *ngIf="!phoneTrue">{{'手机号格式错误'}}</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  QQ
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6" [nzValidateStatus]="qqTrue?'success':'error'"
+                                 [nzHasFeedback]="!qqTrue" >
+                  <input nz-input [(ngModel)]="userData['information']['qq']"
+                         (ngModelChange)="qqChecking()" name="qq">
+                  <nz-form-explain *ngIf="!qqTrue">{{'QQ格式错误'}}</nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  邮箱
+                </nz-form-label>
+                <nz-form-control [nzXXl]="15" [nzXl]="15" [nzLg]="15" [nzMd]="13" [nzSm]="11"
+                                 [nzXs]="6" [nzValidateStatus]="emailTrue?'success':'error'"
+                                 [nzHasFeedback]="!emailTrue" >
+                  <input nz-input  [(ngModel)]="userData['information']['email']"
+                         (ngModelChange)="emailChecking()" name="email">
+                </nz-form-control>
+                <nz-form-explain *ngIf="!emailTrue">{{'邮箱格式错误'}}</nz-form-explain>
+
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-row style="padding-top: 30px">
+            <div nz-col [nzSpan]="14" [nzOffset]="3">
+              <nz-form-item>
+                <nz-form-label [nzXXl]="8" [nzXl]="8" [nzLg]="8" [nzMd]="10" [nzSm]="12" [nzXs]="18">
+                  公司部门
+                </nz-form-label>
+                <nz-form-control>
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司"
+                             [(ngModel)]="userData['information']['department']['company']['id']" (ngModelChange)="companyChange()"
+                             name="company">
+                    <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+                  </nz-select>
+                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门"
+                             [(ngModel)]="userData['information']['department']['id']" name="department" style="padding-left: 30px">
+                    <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name"
+                               [nzValue]="department.id"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </form>
+      </nz-content>
+    </div>
+  </div>
+</div>

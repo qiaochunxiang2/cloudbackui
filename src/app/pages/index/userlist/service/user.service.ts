@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 export class UserService {
   public findAllUrl = 'http://localhost:8080/user/findAll';
   public deleteUserUrl = 'http://localhost:8080/user/deleteUser';
+  public updateInformationUrl = 'http://localhost:8080/user/updateInformation';
 
   constructor(
     private http: HttpClient,
@@ -33,6 +34,17 @@ export class UserService {
   deleteUser(id) {
     return new Promise((resolve, reject) => {
       this.http.delete(this.deleteUserUrl + '?id=' + id).toPromise().then(res => {
+        resolve(res);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  updateInformation(data: any) {
+    data = JSON.parse(JSON.stringify(data));
+    return new Promise((resolve, reject) => {
+      this.http.post(this.updateInformationUrl, data).toPromise().then(res => {
         resolve(res);
       }, error => {
         reject(error);

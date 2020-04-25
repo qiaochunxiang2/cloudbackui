@@ -1,65 +1,72 @@
-<div style="margin-bottom: 16px;">
-  <div nz-row [nzGutter]="20">
-    <div nz-col nzSpan="4">
-      <button nz-button nzType="primary" (click)="openEntryData()">新增</button>
-    </div>
-    <div nz-col nzSpan="4">
-      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="cId" (ngModelChange)="companyChange()"
-                 name="company">
-        <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
-      </nz-select>
-    </div>
-    <div nz-col nzSpan="4">
-      <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门" [(ngModel)]="dId" name="department">
-        <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name"
-                   [nzValue]="department.id"></nz-option>
-      </nz-select>
-    </div>
-    <div nz-col [nzSpan]="1">
-      <button nz-button nzType="default" (click)="queryByCompanyAndDepartment()">查询</button>
+<div *ngIf="!updateUserVisiable">
+  <div style="margin-bottom: 16px;" >
+    <div nz-row [nzGutter]="20">
+      <div nz-col nzSpan="4">
+        <button nz-button nzType="primary" (click)="openEntryData()">新增</button>
+      </div>
+      <div nz-col nzSpan="4">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="cId" (ngModelChange)="companyChange()"
+                   name="company">
+          <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col nzSpan="4">
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门" [(ngModel)]="dId" name="department">
+          <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name"
+                     [nzValue]="department.id"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col [nzSpan]="1">
+        <button nz-button nzType="default" (click)="queryByCompanyAndDepartment()">查询</button>
+      </div>
     </div>
   </div>
+  <nz-table  [nzData]="listData" [nzLoading]="loading">
+    <thead>
+    <tr>
+      <th nzShowSort nzSortKey="id" nzWidth="100px">序号</th>
+      <th [align]="'center'" nzWidth="100px">账号</th>
+      <th [align]="'center'" nzWidth="150px">用户名</th>
+      <th [align]="'center'" nzWidth="100px">性别</th>
+      <th [align]="'center'" nzWidth="200px">手机号</th>
+      <th [align]="'center'" nzWidth="100px">qq</th>
+      <th [align]="'center'" nzWidth="200px">邮箱</th>
+      <th [align]="'center'" nzWidth="100px">公司</th>
+      <th [align]="'center'" nzWidth="100px">部门</th>
+      <th [align]="'center'" nzWidth="100px">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectData}"
+        (click)="selectChange(data)">
+      <td>{{i + 1}}</td>
+      <td>{{data['username']}}</td>
+      <td>{{data['information']['name']}}</td>
+      <td>
+        <ng-container *ngIf="data['information']['sex'] ==1">
+          男
+        </ng-container>
+        <ng-container *ngIf="data['information']['sex'] ==2">
+          女
+        </ng-container>
+        <ng-container *ngIf="data['information']['sex'] ==0">
+          未知
+        </ng-container>
+      </td>
+      <td>{{data['information']['phone']}}</td>
+      <td>{{data['information']['qq']}}</td>
+      <td>{{data['information']['email']}}</td>
+      <td>{{data['information']['department']['company']['name']}}</td>
+      <td>{{data['information']['department']['name']}}</td>
+      <td>
+        <a (click)="update(data)" nzTooltipTitle="修改" nzTooltipPlacement="topLeft" nz-tooltip><i nz-icon nzType="edit"></i></a>
+        <a (click)="delete(data)" nzTooltipTitle="删除" nzTooltipPlacement="topLeft" nz-tooltip
+           style="padding-left: 10px"><i nz-icon nzType="delete"></i></a>    </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <app-entry-data [visible]="entryDataVisible" (result)="closeEntry()"></app-entry-data>
 </div>
-<nz-table #basicTable [nzData]="listData" [nzLoading]="loading">
-  <thead>
-  <tr>
-    <th nzShowSort nzSortKey="id" nzWidth="100px">序号</th>
-    <th [align]="'center'" nzWidth="100px">账号</th>
-    <th [align]="'center'" nzWidth="150px">用户名</th>
-    <th [align]="'center'" nzWidth="100px">性别</th>
-    <th [align]="'center'" nzWidth="200px">手机号</th>
-    <th [align]="'center'" nzWidth="100px">qq</th>
-    <th [align]="'center'" nzWidth="200px">邮箱</th>
-    <th [align]="'center'" nzWidth="100px">公司</th>
-    <th [align]="'center'" nzWidth="100px">部门</th>
-    <th [align]="'center'" nzWidth="100px">操作</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectData}"
-      (click)="selectChange(data)">
-    <td>{{i + 1}}</td>
-    <td>{{data['username']}}</td>
-    <td>{{data['information']['name']}}</td>
-    <td>
-      <ng-container *ngIf="data['information']['sex'] ==1">
-        男
-      </ng-container>
-      <ng-container *ngIf="data['information']['sex'] ==2">
-        女
-      </ng-container>
-      <ng-container *ngIf="data['information']['sex'] ==0">
-        未知
-      </ng-container>
-    </td>
-    <td>{{data['information']['phone']}}</td>
-    <td>{{data['information']['qq']}}</td>
-    <td>{{data['information']['email']}}</td>
-    <td>{{data['information']['department']['company']['name']}}</td>
-    <td>{{data['information']['department']['name']}}</td>
-    <td><a (click)="delete(data)"><i nz-icon nzType="delete"></i></a></td>
-  </tr>
-  </tbody>
-</nz-table>
-<app-entry-data [visible]="entryDataVisible" (result)="closeEntry()"></app-entry-data>
-
+<div *ngIf="updateUserVisiable">
+  <app-update-user [userData]="selectData" (result)="updateBack(1)" (updateResult)="updateBack(2)"></app-update-user>
+</div>

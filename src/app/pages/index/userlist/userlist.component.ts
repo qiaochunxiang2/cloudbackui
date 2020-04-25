@@ -20,6 +20,7 @@ export class UserlistComponent implements OnInit {
   listDepartment;
   cId;
   dId;
+  updateUserVisiable = false;
 
   constructor(
     private userService: UserService,
@@ -31,7 +32,7 @@ export class UserlistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findAll();
+    this.queryByCompanyAndDepartment();
     this.findAllCompany();
   }
 
@@ -42,18 +43,7 @@ export class UserlistComponent implements OnInit {
 
   closeEntry() {
     this.entryDataVisible = false;
-  }
-
-  findAll() {
-    this.loading = true;
-    this.userService.findAll(null, null).then(res => {
-      if (res['data']) {
-        this.listData = res['data'];
-      } else {
-        this.message.error('服务器错误');
-      }
-      this.loading = false;
-    });
+    this.queryByCompanyAndDepartment();
   }
 
   selectChange(data) {
@@ -76,7 +66,7 @@ export class UserlistComponent implements OnInit {
     this.userService.deleteUser(id).then(res => {
       if (res['data']) {
         this.message.success('删除成功');
-        this.findAll();
+        this.queryByCompanyAndDepartment();
       } else {
         this.message.error('删除失败');
       }
@@ -120,5 +110,17 @@ export class UserlistComponent implements OnInit {
       }
       this.loading = false;
     });
+  }
+
+  updateBack(data) {
+    this.updateUserVisiable = false;
+    if (data == 2) {
+      this.queryByCompanyAndDepartment();
+    }
+  }
+
+  update(data) {
+    this.selectData = data;
+    this.updateUserVisiable = true;
   }
 }

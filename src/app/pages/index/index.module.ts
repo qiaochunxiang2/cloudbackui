@@ -12,8 +12,9 @@ import {CompanyComponent} from '../company/company.component';
 import {AddCompanyComponent} from '../company/add-company/add-company.component';
 import {UpdateCompanyComponent} from '../company/update-company/update-company.component';
 import {DepartmentComponent} from '../department/department.component';
-import { AddDepartmentComponent } from '../department/add-department/add-department.component';
-import { UpdateDepartmentComponent } from '../department/update-department/update-department.component';
+import {AddDepartmentComponent} from '../department/add-department/add-department.component';
+import {UpdateDepartmentComponent} from '../department/update-department/update-department.component';
+import {UpdateUserComponent} from './userlist/update-user/update-user.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
     DepartmentComponent,
     AddDepartmentComponent,
     UpdateDepartmentComponent,
+    UpdateUserComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
