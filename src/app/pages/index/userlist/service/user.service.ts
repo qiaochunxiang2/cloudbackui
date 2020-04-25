@@ -13,9 +13,16 @@ export class UserService {
   ) {
   }
 
-  findAll() {
+  findAll(cId, dId) {
+    let findUrl = this.findAllUrl;
+    if (cId != null) {
+      findUrl = findUrl + '?cId=' + cId;
+    }
+    if (dId != null) {
+      findUrl = findUrl + '&&dId=' + dId;
+    }
     return new Promise((resolve, reject) => {
-      this.http.get(this.findAllUrl).toPromise().then(res => {
+      this.http.get(findUrl).toPromise().then(res => {
         resolve(res);
       }, error => {
         reject(error);

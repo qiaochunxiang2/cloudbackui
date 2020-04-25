@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EntryDataService} from '../entry-data/service/entry-data.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {UserService} from './service/user.service';
+import {CompanyService} from '../../company/service/company.service';
+import {DepartmentService} from '../../department/service/department.service';
 
 @Component({
   selector: 'app-userlist',
@@ -14,15 +16,23 @@ export class UserlistComponent implements OnInit {
   loading = false;
   listData = [];
   selectData;
+  listCompany;
+  listDepartment;
+  cId;
+  dId;
+
   constructor(
     private userService: UserService,
     private message: NzMessageService,
     private modalService: NzModalService,
+    private companyService: CompanyService,
+    private departmentService: DepartmentService
   ) {
   }
 
   ngOnInit() {
     this.findAll();
+    this.findAllCompany();
   }
 
 
@@ -34,23 +44,23 @@ export class UserlistComponent implements OnInit {
     this.entryDataVisible = false;
   }
 
-  findAll(){
+  findAll() {
     this.loading = true;
-    this.userService.findAll().then(res=>{
-      if (res['data']){
+    this.userService.findAll(null, null).then(res => {
+      if (res['data']) {
         this.listData = res['data'];
-      } else{
+      } else {
         this.message.error('服务器错误');
       }
       this.loading = false;
-    })
+    });
   }
 
-  selectChange(data){
+  selectChange(data) {
     this.selectData = data;
   }
 
-  delete(data){
+  delete(data) {
     this.modalService.warning({
       nzTitle: null,
       nzContent: '<b style="color:#1b86d7;">您确定要删除此用户吗？</b>',
@@ -61,15 +71,54 @@ export class UserlistComponent implements OnInit {
     });
   }
 
-  deleteConfirm(data){
+  deleteConfirm(data) {
     let id = data.id;
-    this.userService.deleteUser(id).then(res=>{
-      if (res['data']){
+    this.userService.deleteUser(id).then(res => {
+      if (res['data']) {
         this.message.success('删除成功');
         this.findAll();
-      }else{
+      } else {
         this.message.error('删除失败');
       }
-    })
+    });
+  }
+
+  findAllCompany() {
+    this.companyService.findAllCompany().then(res => {
+      if (res['data']) {
+        this.listCompany = res['data'];
+      } else {
+        this.message.error('服务器错误');
+      }
+    });
+  }
+
+  companyChange() {
+    this.dId = null;
+    if (this.cId != null) {
+      this.queryByCompany();
+    }
+  }
+
+  queryByCompany() {
+    this.departmentService.findAllDepartment(this.cId).then(res => {
+      if (res['data']) {
+        this.listDepartment = res['data'];
+      } else {
+        this.message.error('服务器错误');
+      }
+    });
+  }
+
+  queryByCompanyAndDepartment() {
+    this.loading = true;
+    this.userService.findAll(this.cId, this.dId).then(res => {
+      if (res['data']) {
+        this.listData = res['data'];
+      } else {
+        this.message.error('服务器错误');
+      }
+      this.loading = false;
+    });
   }
 }
