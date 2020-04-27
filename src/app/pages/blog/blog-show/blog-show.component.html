@@ -1,0 +1,37 @@
+<div class="content-header" #header>
+<div class="content-div" style="height: 40px">
+  <a (click)="back()" [title]="'返回详情列表'"
+     style="font-weight: bold;line-height: 40px;margin-left: 8px;color: black">
+    <i nz-icon nzTheme="outline" nzType="left"></i>返回文章列表
+  </a>
+</div>
+</div>
+<div class="content-table" style="padding-top: 8px;background-color: #f9f9fA">
+  <div nz-row>
+    <div nz-col nzSpan="3"></div>
+    <div nz-col nzSpan="18" style="padding-top: 30px; background: #ffffff">
+      <div nz-row style="padding-left: 20px">
+        <h1 style="font-weight: bold">
+          {{markdown['title']}}
+        </h1>
+      </div>
+      <div nz-row style="padding-left: 20px; padding-bottom: 20px">
+        <span style="font-size: 20px">{{markdown['userInformation']['name']}}</span>
+        <span style="padding-left: 30px;font-size: 20px">{{markdown['publishDate'] | date: 'yyyy-MM-dd hh:mm'}}</span>
+      </div>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col [nzSpan]="3"></div>
+    <div nz-col [nzSpan]="18">
+      <div id="layout">
+        <div id="test-editormd-view2">
+    <textarea id="append-test" style="display:none;">
+
+    </textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

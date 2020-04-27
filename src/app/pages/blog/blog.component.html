@@ -1,0 +1,28 @@
+<div *ngIf="!blogShowVisible">
+  <nz-table #basicTable [nzData]="blogData" [nzLoading]="loading">
+    <thead>
+    <tr>
+      <th nzShowSort nzSortKey="id">序号</th>
+      <th >标题</th>
+      <th>作者</th>
+      <th>发布时间</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index" [ngClass]="{'selected-tr':data === selectedBlog}"
+        (click)="changeSelectedBlog(data)">
+      <td>{{i + 1}}</td>
+      <td><a (click)="showBlog(data)">{{data['title']}}</a> </td>
+      <td>{{data['userInformation']['name']}}</td>
+      <td>{{data['publishDate']| date: 'yyyy-MM-dd'}}</td>
+      <td>
+        <a (click)="delete(data)" nzTooltipTitle="删除" nzTooltipPlacement="topLeft" nz-tooltip
+           style="padding-left: 10px"><i nz-icon nzType="delete"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<app-blog-show *ngIf="blogShowVisible" [markdown]="selectedBlog" (result)="back()"></app-blog-show>

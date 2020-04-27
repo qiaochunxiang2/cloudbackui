@@ -15,6 +15,8 @@ import {DepartmentComponent} from '../department/department.component';
 import {AddDepartmentComponent} from '../department/add-department/add-department.component';
 import {UpdateDepartmentComponent} from '../department/update-department/update-department.component';
 import {UpdateUserComponent} from './userlist/update-user/update-user.component';
+import { BlogComponent } from '../blog/blog.component';
+import { BlogShowComponent } from '../blog/blog-show/blog-show.component';
 
 
 const routes: Routes = [
@@ -23,7 +25,8 @@ const routes: Routes = [
       {path: 'welcome', component: WelcomeComponent},
       {path: 'userlist', component: UserlistComponent},
       {path: 'company', component: CompanyComponent},
-      {path: 'department', component: DepartmentComponent}
+      {path: 'department', component: DepartmentComponent},
+      {path: 'blog', component: BlogComponent},
     ]
   }
 ];
@@ -41,6 +44,8 @@ const routes: Routes = [
     AddDepartmentComponent,
     UpdateDepartmentComponent,
     UpdateUserComponent,
+    BlogComponent,
+    BlogShowComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
