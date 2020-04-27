@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <nz-table  [nzData]="listData" [nzLoading]="loading">
+  <nz-table #userData [nzData]="listData" [nzLoading]="loading">
     <thead>
     <tr>
       <th nzShowSort nzSortKey="id" nzWidth="100px">序号</th>
@@ -37,7 +37,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of listData; let i = index" [ngClass]="{'selected-tr':data === selectData}"
+    <tr *ngFor="let data of userData.data; let i = index" [ngClass]="{'selected-tr':data === selectData}"
         (click)="selectChange(data)">
       <td>{{i + 1}}</td>
       <td>{{data['username']}}</td>
