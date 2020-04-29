@@ -33,7 +33,8 @@
       <td>{{data['name']}}</td>
       <td>{{data['company']['name']}}</td>
       <td>
-        <a (click)="update(data)" nzTooltipTitle="修改" nzTooltipPlacement="topLeft" nz-tooltip><i nz-icon nzType="edit"></i></a>
+        <a (click)="update(data)" nzTooltipTitle="修改" nzTooltipPlacement="topLeft" nz-tooltip><i nz-icon
+                                                                                                 nzType="edit"></i></a>
         <a (click)="delete(data)" nzTooltipTitle="删除" nzTooltipPlacement="topLeft" nz-tooltip
            style="padding-left: 10px"><i nz-icon nzType="delete"></i></a>
       </td>
@@ -41,7 +42,9 @@
     </tbody>
   </nz-table>
 </div>
-<app-add-department [isVisible]="addDepartmentVisiable" (result)="addBack()"></app-add-department>
+<app-add-department [isVisible]="addDepartmentVisiable" (result)="addBack(1)"
+                    (saveResult)="addBack(2)"></app-add-department>
 <div *ngIf="updateDepartmentVisiable">
-  <app-update-department [departmentData]="selectedDepartment" (result)="updateBack(1)" (saveResult)="updateBack(2)"></app-update-department>
+  <app-update-department [departmentData]="selectedDepartment" (result)="updateBack(1)"
+                         (saveResult)="updateBack(2)"></app-update-department>
 </div>

@@ -32,16 +32,23 @@ export class AddCompanyComponent implements OnInit {
   }
 
   back() {
+    this.clear();
+    this.result.emit(false);
+  }
+
+  saveBack() {
+    this.clear();
+    this.saveResult.emit(false);
+  }
+
+  clear() {
     this.companyData = {
       name: null,
       address: null,
       phone: null
     };
-    this.result.emit(false);
-  }
-
-  saveBack() {
-    this.saveResult.emit(false);
+    this.nameRequired = false;
+    this.phoneRequired = false;
   }
 
   confrim() {
@@ -81,7 +88,7 @@ export class AddCompanyComponent implements OnInit {
           this.message.success('添加成功');
           this.isConfirmLoading = false;
           setTimeout(() => {
-            this.back();
+            this.saveBack();
           }, 200);
         } else {
           this.message.error('服务器错误');

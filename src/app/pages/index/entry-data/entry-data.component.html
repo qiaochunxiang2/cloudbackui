@@ -11,16 +11,21 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>账号</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="userData.username" name="username">
+          <nz-form-control [nzValidateStatus]="!usernameRequired?'success':'error'"
+                           [nzHasFeedback]="usernameRequired">
+            <input nz-input [(ngModel)]="userData.username" name="username" (ngModelChange)="usernameChange()">
+            <nz-form-explain *ngIf="usernameRequired">{{'请输入账号'}}</nz-form-explain>
           </nz-form-control>
         </nz-form-item>
       </div>
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>密码</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="userData.password" name="password">
+          <nz-form-control [nzValidateStatus]="!passwordRequired?'success':'error'"
+                           [nzHasFeedback]="passwordRequired">
+            <input type="password" nz-input [(ngModel)]="userData.password" name="password"
+                   (ngModelChange)="passwordChange()">
+            <nz-form-explain *ngIf="passwordRequired">{{'请输入密码'}}</nz-form-explain>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -68,7 +73,7 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>手机号</nz-form-label>
-          <nz-form-control  [nzValidateStatus]="phoneTrue?'success':'error'"
+          <nz-form-control [nzValidateStatus]="phoneTrue?'success':'error'"
                            [nzHasFeedback]="!phoneTrue">
             <input nz-input [(ngModel)]="userData.information.phone"
                    (ngModelChange)="phoneChecking()" name="phone">
@@ -79,9 +84,9 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>QQ</nz-form-label>
-          <nz-form-control  [nzValidateStatus]="qqTrue?'success':'error'"
-                           [nzHasFeedback]="!qqTrue" >
-            <input nz-input  [(ngModel)]="userData.information.qq"
+          <nz-form-control [nzValidateStatus]="qqTrue?'success':'error'"
+                           [nzHasFeedback]="!qqTrue">
+            <input nz-input [(ngModel)]="userData.information.qq"
                    (ngModelChange)="qqChecking()" name="qq">
             <nz-form-explain *ngIf="!qqTrue">{{'QQ格式错误'}}</nz-form-explain>
           </nz-form-control>
@@ -92,8 +97,8 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>邮箱</nz-form-label>
-          <nz-form-control  [nzValidateStatus]="emailTrue?'success':'error'"
-                            [nzHasFeedback]="!emailTrue">
+          <nz-form-control [nzValidateStatus]="emailTrue?'success':'error'"
+                           [nzHasFeedback]="!emailTrue">
             <input nz-input [(ngModel)]="userData.information.email"
                    (ngModelChange)="emailChecking()" name="email">
             <nz-form-explain *ngIf="!emailTrue">{{'邮箱格式错误'}}</nz-form-explain>
@@ -103,8 +108,8 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>地址</nz-form-label>
-          <nz-form-control  >
-            <input nz-input  [(ngModel)]="userData.information.address" name="address">
+          <nz-form-control>
+            <input nz-input [(ngModel)]="userData.information.address" name="address">
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -113,10 +118,12 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-label>公司</nz-form-label>
-          <nz-form-control  [nzValidateStatus]="!companyRequired?'success':'error'"
-                            [nzHasFeedback]="companyRequired">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="cId" (ngModelChange)="companyChange()" name="company">
-              <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name" [nzValue]="company.id"></nz-option>
+          <nz-form-control [nzValidateStatus]="!companyRequired?'success':'error'"
+                           [nzHasFeedback]="companyRequired">
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择公司" [(ngModel)]="cId"
+                       (ngModelChange)="companyChange()" name="company">
+              <nz-option *ngFor="let company of listCompany" [nzLabel]="company?.name"
+                         [nzValue]="company.id"></nz-option>
             </nz-select>
             <nz-form-explain *ngIf="companyRequired">{{'请选择公司'}}</nz-form-explain>
           </nz-form-control>
@@ -127,8 +134,10 @@
           <nz-form-label>部门</nz-form-label>
           <nz-form-control [nzValidateStatus]="!departmentRequired?'success':'error'"
                            [nzHasFeedback]="departmentRequired">
-            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门" [(ngModel)]="userData.information.department.id" (ngModelChange)="departmentChange()" name="department">
-              <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name" [nzValue]="department.id"></nz-option>
+            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择部门" [(ngModel)]="userData.information.department.id"
+                       (ngModelChange)="departmentChange()" name="department">
+              <nz-option *ngFor="let department of listDepartment" [nzLabel]="department?.name"
+                         [nzValue]="department.id"></nz-option>
             </nz-select>
             <nz-form-explain *ngIf="departmentRequired">{{'请选择部门'}}</nz-form-explain>
           </nz-form-control>

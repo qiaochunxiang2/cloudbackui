@@ -17,9 +17,12 @@ export class AddDepartmentComponent implements OnInit {
   listCompany = [];
   @Input() isVisible = false;
   @Output() result = new EventEmitter();
+  @Output() saveResult = new EventEmitter();
+
   isConfirmLoading = false;
   nameRequired = false;
   companyRequired = false;
+
   constructor(
     private departmentService: DepartmentService,
     private message: NzMessageService,
@@ -32,12 +35,23 @@ export class AddDepartmentComponent implements OnInit {
     this.findAllCompany();
   }
 
-  back() {
+  clear() {
     this.departmentData = {
       name: null,
       cId: null
     };
+    this.companyRequired = false;
+    this.nameRequired = false;
+  }
+
+  back() {
+    this.clear();
     this.result.emit(false);
+  }
+
+  saveBack() {
+    this.clear();
+    this.saveResult.emit(false);
   }
 
   confrim() {
@@ -77,7 +91,7 @@ export class AddDepartmentComponent implements OnInit {
           this.message.success('添加成功');
           this.isConfirmLoading = false;
           setTimeout(() => {
-            this.back();
+            this.saveBack();
           }, 300);
         } else {
           this.message.error('服务器错误');
@@ -86,13 +100,13 @@ export class AddDepartmentComponent implements OnInit {
     }
   }
 
-  findAllCompany(){
-    this.companyService.findAllCompany().then(res=>{
-      if (res['data']){
+  findAllCompany() {
+    this.companyService.findAllCompany().then(res => {
+      if (res['data']) {
         this.listCompany = res['data'];
-      } else{
+      } else {
         this.message.error('服务器错误');
       }
-    })
+    });
   }
 }

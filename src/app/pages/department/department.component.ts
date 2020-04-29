@@ -34,9 +34,11 @@ export class DepartmentComponent implements OnInit {
     this.addDepartmentVisiable = true;
   }
 
-  addBack() {
+  addBack(data) {
     this.addDepartmentVisiable = false;
-    this.findAllDepartment();
+    if (data == 2) {
+      this.findAllDepartment();
+    }
   }
 
   findAllDepartment() {

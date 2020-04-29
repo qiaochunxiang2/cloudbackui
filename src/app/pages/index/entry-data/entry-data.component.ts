@@ -37,6 +37,9 @@ export class EntryDataComponent implements OnInit {
   };
   companyRequired = false;
   departmentRequired = false;
+  usernameRequired = false;
+  passwordRequired = false;
+
   constructor(
     private entryDataService: EntryDataService,
     private message: NzMessageService,
@@ -74,38 +77,45 @@ export class EntryDataComponent implements OnInit {
   }
 
   save() {
-    this.modalService.warning({
-      nzTitle: null,
-      nzContent: '<b style="color:#1b86d7;">您确定要添加此用户吗？</b>',
-      nzOkText: '确定',
-      nzOnOk: () => this.saveConfirm(),
-      nzCancelText: '取消',
-      nzOnCancel: () => null
-    });
-
-  }
-
-  saveConfirm(){
     this.confirm();
-    if (this.userData.username != null && this.userData.password != null) {
-      this.entryDataService.register(this.userData).then(res => {
-        if (res['state'] == 200) {
-          this.message.success('添加成功');
-          setTimeout(() => {
-            this.close();
-          }, 300);
-        } else {
-          this.message.error('账号已存在');
-        }
-      });
+    if (!this.usernameRequired && !this.passwordRequired && !this.departmentRequired && !this.companyRequired) {
+      if (this.qqTrue && this.emailTrue && this.phoneTrue) {
+        this.modalService.warning({
+          nzTitle: null,
+          nzContent: '<b style="color:#1b86d7;">您确定要添加此用户吗？</b>',
+          nzOkText: '确定',
+          nzOnOk: () => this.saveConfirm(),
+          nzCancelText: '取消',
+          nzOnCancel: () => null
+        });
+      } else {
+        this.message.error('信息格式错误');
+      }
     } else {
-      this.message.error('请填写账号和密码');
+      this.message.error('请完善信息');
     }
+
+
   }
 
-  confirm(){
+  saveConfirm() {
+    this.entryDataService.register(this.userData).then(res => {
+      if (res['state'] == 200) {
+        this.message.success('添加成功');
+        setTimeout(() => {
+          this.close();
+        }, 300);
+      } else {
+        this.message.error('账号已存在');
+      }
+    });
+  }
+
+  confirm() {
     this.departmentRequired = this.userData.information.department.id == null || this.userData.information.department.id == '';
     this.companyRequired = this.cId == null || this.cId == '';
+    this.usernameRequired = this.userData.username == null || this.userData.username == '';
+    this.passwordRequired = this.userData.password == null || this.userData.password == '';
   }
 
   emailChecking() {
@@ -135,27 +145,28 @@ export class EntryDataComponent implements OnInit {
     this.qqTrue = qqCheck.test(this.userData.information.qq);
   }
 
-  findAllCompany(){
-    this.companyService.findAllCompany().then(res=>{
-      if (res['data']){
+  findAllCompany() {
+    this.companyService.findAllCompany().then(res => {
+      if (res['data']) {
         this.listCompany = res['data'];
-      } else{
+      } else {
         this.message.error('服务器错误');
       }
-    })
+    });
   }
 
-  companyChange(){
+  companyChange() {
     this.companyRequired = this.cId == null || this.cId == '';
     this.userData.information.department.id = null;
-    if (this.cId != null){
+    if (this.cId != null) {
       this.queryByCompany();
     }
   }
 
-  departmentChange(){
+  departmentChange() {
     this.departmentRequired = this.userData.information.department.id == null || this.userData.information.department.id == '';
   }
+
   queryByCompany() {
     this.departmentService.findAllDepartment(this.cId).then(res => {
       if (res['data']) {
@@ -164,5 +175,13 @@ export class EntryDataComponent implements OnInit {
         this.message.error('服务器错误');
       }
     });
+  }
+
+  usernameChange() {
+    this.usernameRequired = this.userData.username == null || this.userData.username == '';
+  }
+
+  passwordChange() {
+    this.passwordRequired = this.userData.password == null || this.userData.password == '';
   }
 }
